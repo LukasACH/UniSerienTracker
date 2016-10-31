@@ -14,12 +14,5 @@
       <FileName>Serien.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UniSerienTracker.Vorlesungen">
-    <Position X="2.75" Y="0.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAQAAAAAEAAAAAAAAAAEAAAAAAAABA=</HashCode>
-      <FileName>Serien.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

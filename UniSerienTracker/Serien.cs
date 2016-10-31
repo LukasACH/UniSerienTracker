@@ -64,31 +64,4 @@ namespace UniSerienTracker
             return (got / max);
         }
     }
-
-    class Vorlesungen
-    {
-        private List<Vorlesung> vorlesungen = new List<Vorlesung>();
-
-        public void AddVorlesung(string name)
-        {
-            vorlesungen.Add(new Vorlesung(name));
-        }
-
-        public int AnzahlVorlesungen()
-        {
-            return vorlesungen.Count();
-        }
-
-        public int GetIndex(Vorlesung name)
-        {
-            try
-            {
-                return vorlesungen.IndexOf(name);
-            }
-            catch
-            {
-                return -1;
-            }
-        }
-    }
 }

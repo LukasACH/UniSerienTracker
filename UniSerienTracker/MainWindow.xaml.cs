@@ -20,9 +20,42 @@ namespace UniSerienTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Vorlesung> vorlesungen = new List<Vorlesung>();
+
         public MainWindow()
         {
             InitializeComponent();
+            ErstelleVorlesung();
+        }
+
+        public void ErstelleVorlesung()
+        {
+            vorlesungen.Add(new Vorlesung("Lineare Algebra I"));
+            vorlesungen[0].AddSerie("Serie 1", 16, 10.5);
+            vorlesungen[0].GetNameVonSerien();
+            vorlesungen[0].GetPercentage();
+        }
+
+        public void AddVorlesung(string name)
+        {
+            vorlesungen.Add(new Vorlesung(name));
+        }
+
+        public int AnzahlVorlesungen()
+        {
+            return vorlesungen.Count();
+        }
+
+        public int GetIndex(Vorlesung name)
+        {
+            try
+            {
+                return vorlesungen.IndexOf(name);
+            }
+            catch
+            {
+                return -1;
+            }
         }
     }
 }
