@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="323" VerticalAlignment="Top" Width="520">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="buttonSubmit" Content="Speichern" HorizontalAlignment="Left" Margin="152,13,0,0" VerticalAlignment="Top" Width="75" Click="buttonSubmit_Click"/>
+                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="153" Margin="30,105,0,0" VerticalAlignment="Top" Width="410">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>

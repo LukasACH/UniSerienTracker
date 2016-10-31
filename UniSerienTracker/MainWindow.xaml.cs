@@ -32,8 +32,20 @@ namespace UniSerienTracker
         {
             vorlesungen.Add(new Vorlesung("Lineare Algebra I"));
             vorlesungen[0].AddSerie("Serie 1", 16, 10.5);
-            vorlesungen[0].GetNameVonSerien();
-            vorlesungen[0].GetPercentage();
+            Console.WriteLine(vorlesungen[0].GetNameVonSerien()[0]);
+            Console.WriteLine(vorlesungen[0].GetPercentage());
+        }
+
+        public string[] makeArray()
+        {
+            string[] vorlesungenArray = new string[vorlesungen.Count];
+            int i = 0;
+            foreach (Vorlesung v in vorlesungen)
+            {
+                vorlesungenArray[i] = v.ToString();
+                i++;
+            }
+            return vorlesungenArray;
         }
 
         public void AddVorlesung(string name)
@@ -41,21 +53,18 @@ namespace UniSerienTracker
             vorlesungen.Add(new Vorlesung(name));
         }
 
-        public int AnzahlVorlesungen()
+        private void buttonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            return vorlesungen.Count();
+            string nameVorlesung = textBox.Text;
+            textBox.Text = "";
+            vorlesungen.Add(new Vorlesung(nameVorlesung));
+            updateList();
         }
 
-        public int GetIndex(Vorlesung name)
+        private void updateList()
         {
-            try
-            {
-                return vorlesungen.IndexOf(name);
-            }
-            catch
-            {
-                return -1;
-            }
+            makeArray();
+            listView.ItemsSource = makeArray();
         }
     }
 }

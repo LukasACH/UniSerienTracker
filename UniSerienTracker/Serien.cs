@@ -63,5 +63,10 @@ namespace UniSerienTracker
             }
             return (got / max);
         }
+
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }

@@ -8,9 +8,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="UniSerienTracker.Vorlesung">
-    <Position X="5.5" Y="1" Width="1.75" />
+    <Position X="2.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>EAAAAQAAACAAAAAAAAAAAAAAAAAEAAAAAAABACAAAAA=</HashCode>
+      <HashCode>EAAAAQAAACAAAAAEAAAAAAAAAAAEAAAAAAABACAAAAA=</HashCode>
       <FileName>Serien.cs</FileName>
     </TypeIdentifier>
   </Class>
