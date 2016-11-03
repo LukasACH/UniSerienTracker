@@ -8,23 +8,25 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="323" VerticalAlignment="Top" Width="520">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Übersich">
                 <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="buttonSubmit" Content="Speichern" HorizontalAlignment="Left" Margin="152,13,0,0" VerticalAlignment="Top" Width="75" Click="buttonSubmit_Click"/>
-                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="153" Margin="30,105,0,0" VerticalAlignment="Top" Width="410">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DataGrid x:Name="uebersichtVorlesungen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="149" Width="316" CanUserAddRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Vorlesung}" ClipboardContentBinding="{x:Null}" Header="Vorlesung"/>
+                            <DataGridTextColumn Binding="{Binding Path=Prozent}" ClipboardContentBinding="{x:Null}" Header="Prozent"/>
+                            <DataGridTextColumn Binding="{Binding Path=Testat}" ClipboardContentBinding="{x:Null}" Header="Testatbedingungen"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Einstellungen">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="listeVorlesungen" Margin="10,10,0,0" HorizontalAlignment="Left" Width="211" Height="188" VerticalAlignment="Top" SelectionChanged="listeVorlesungen_SelectionChanged"/>
+                    <Button x:Name="buttonSubmit" HorizontalAlignment="Left" Margin="351,10,0,0" VerticalAlignment="Top" Width="75" Click="buttonSubmit_Click" Height="23" Content="Hinzufügen"/>
+                    <TextBox x:Name="nameNeueVorlesung" HorizontalAlignment="Left" Height="23" Margin="226,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Neue Vorlesung" KeyDown="nameNeueVorlesung_KeyDown"/>
+                    <Button x:Name="buttonDelete" Content="Löschen" HorizontalAlignment="Left" Margin="271,161,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="buttonLöschen_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

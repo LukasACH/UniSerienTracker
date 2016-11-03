@@ -21,11 +21,14 @@ namespace UniSerienTracker
     public partial class MainWindow : Window
     {
         private List<Vorlesung> vorlesungen = new List<Vorlesung>();
+        private int indexListeVorlesung = -1;
 
         public MainWindow()
         {
             InitializeComponent();
             ErstelleVorlesung();
+            updateList();
+            string[,] vorlesungubersicht = new string[2, 3] { {"fdf","fdf","fdfd" },{"fdf","fdf","dfdf" } };
         }
 
         public void ErstelleVorlesung()
@@ -55,16 +58,77 @@ namespace UniSerienTracker
 
         private void buttonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string nameVorlesung = textBox.Text;
-            textBox.Text = "";
-            vorlesungen.Add(new Vorlesung(nameVorlesung));
+            string nameVorlesung = nameNeueVorlesung.Text;
+            nameNeueVorlesung.Text = "";
+            if (!(nameVorlesung == ""))
+                vorlesungen.Add(new Vorlesung(nameVorlesung));
             updateList();
         }
 
         private void updateList()
         {
             makeArray();
-            listView.ItemsSource = makeArray();
+            listeVorlesungen.ItemsSource = makeArray();
+            updateDataGrid();
         }
+
+        private void updateDataGrid()
+        {
+            List<UebersichtVorlesung> listeUebersichtVorlesungen = new List<UebersichtVorlesung>();
+            foreach (Vorlesung v in vorlesungen)
+            {
+                string prozent = "";
+                try
+                {
+                    prozent = String.Format("{0}%", Convert.ToInt16(v.GetPercentage() * 100));
+                }
+                catch
+                {
+                    prozent = "0%";
+                }
+                string testat = String.Format("{0}%", Convert.ToInt16(v.testat * 100));
+                listeUebersichtVorlesungen.Add(new UebersichtVorlesung { Vorlesung = v.ToString(), Prozent = prozent, Testat = testat });
+            }
+            uebersichtVorlesungen.Items.Clear();
+            uebersichtVorlesungen.Items.Add(listeUebersichtVorlesungen);
+        }
+
+        private void buttonLöschen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show(String.Format("Willst du die Vorlesung \"{0:s}\" löschen?", listeVorlesungen.SelectedItem), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    vorlesungen.RemoveAt(indexListeVorlesung);
+                }
+                
+            }
+            catch { }
+            finally
+            {
+                updateList();
+            }
+        }
+
+        private void listeVorlesungen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            indexListeVorlesung = listeVorlesungen.SelectedIndex;
+        }
+
+        private void nameNeueVorlesung_KeyDown(object sender, KeyEventArgs e)
+        { 
+            if (e.Key == Key.Enter)
+            {
+                buttonSubmit_Click(this, new RoutedEventArgs());
+            }
+        }
+    }
+
+    class UebersichtVorlesung
+    {
+        public string Vorlesung { get; set; }
+        public string Prozent { get; set; }
+        public string Testat { get; set; }
     }
 }

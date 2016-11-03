@@ -22,7 +22,9 @@ namespace UniSerienTracker
 
     class Vorlesung
     {
-        private string name;
+        private string name = "";
+        public double testat = 0;
+
         List<Serie> serien = new List<Serie>();
 
         public Vorlesung(string name)
@@ -56,12 +58,21 @@ namespace UniSerienTracker
         {
             double max = 0;
             double got = 0;
+            double percantage = 0;
             foreach (Serie s in serien)
             {
                 max += s.mxPt;
                 got += s.erPt;
             }
-            return (got / max);
+            try
+            {
+                percantage = (got / max);
+            }
+            catch (OverflowException e)
+            {
+                percantage = 0;
+            }
+            return percantage;
         }
 
         public override string ToString()
